@@ -37,7 +37,7 @@
       flex: 8;
   
       padding: 0 32px;
-  
+      flex-direction: column;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,6 +50,7 @@
       max-width: 320px;
       align-items: stretch;
       text-align: center;
+      padding: 50px 0;
   
       > img {
         align-self: center;
@@ -88,10 +89,14 @@
           color: #e559f9;
         }
       }
+
+      span{
+        margin-top: 15px;
+      }
     }
   
     .create-room {
-      margin-top: 64px;
+      margin-top: 16px;
       height: 50px;
       border-radius: 8px;
       font-weight: 500;

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import cx from 'classnames'
+import avatarImg from '../../assets/images/avatar.png'
 import './styles.scss'
 
 
@@ -25,8 +26,16 @@ export function Question({content,author,children, isAnswered = false, isHighlig
             <p>{ content }</p>
             <footer>
                 <div className="user-info">
-                    <img src={author.avatar} alt={author.name} />
-                    <span>{author.name}</span>
+                    {
+                        author ? (
+                            <>
+                                <img src={author.avatar ? author.avatar : avatarImg} alt={author.name} />
+                                <span>{author.name}</span>
+                            </>
+                        ) : (
+                            <span>Anônimo</span>
+                        )
+                    }
                 </div>
                 <div>
                     {children}

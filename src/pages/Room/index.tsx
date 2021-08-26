@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import logoImg from '../../assets/images/logo.svg';
 
+import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
@@ -24,7 +25,7 @@ export function Room() {
     const roomId = params.id
     const [newQuestion, setNewQuestion] = useState('')
 
-    const {questions, title} = useRoom(roomId)//carregamento dos dados da sala
+    const {questions, title, authorId} = useRoom(roomId)//carregamento dos dados da sala
 
     async function  handleSendQuestion(event: FormEvent) {
         event.preventDefault()
@@ -32,15 +33,15 @@ export function Room() {
         if(newQuestion.trim() === ''){
             return
         }
-        if(!user){
-            throw new Error('You must be logged in')
-        }
+        // if(!user){
+        //     throw new Error('You must be logged in')
+        // }
 
         const question = {
             content: newQuestion,
             author: {
-                name: user?.name,
-                avatar: user.avatar
+                name: user?.name || 'Anônimo',
+                avatar: user?.avatar || null
             },
             isHighlighted:false,
             isAnswered:false
@@ -62,12 +63,7 @@ export function Room() {
     }
     return (
         <div id="page-room">
-            <header>
-                <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
-                    <RoomCode code={roomId} />
-                </div>
-            </header>
+           <Header roomId={roomId} roomAuthorId={authorId} roomTitle={title}/>
 
             <main>
                 <div className="room-title">
@@ -83,15 +79,15 @@ export function Room() {
                     />
 
                     <div className="form-footer">
-                        { user ? (
+                        {/* { user ? (
                             <div className="user-info">
                                 <img src={user.avatar} alt={user.name} />
                                 <span>{user.name}</span>
                             </div>
                         ) : (
                             <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
-                        ) }         
-                        <Button type="submit" disabled={!user}>Enviar pergunta</Button>
+                        ) }          */}
+                        <Button type="submit" >Enviar pergunta</Button>
                     </div>
                 </form>
 

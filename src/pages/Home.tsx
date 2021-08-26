@@ -2,13 +2,14 @@ import { FormEvent, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { database } from '../services/firebase'
-import {useAuth} from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIconImg from '../assets/images/google-icon.svg'
 
 import{ Button } from '../components/Button'
+import { UserInfoDropdown } from '../components/UserInfoDropdown'
 
 
 import '../styles/auth.scss'
@@ -16,11 +17,11 @@ import '../styles/auth.scss'
 
 export function Home(){
 
-    const history = useHistory()//toda função que começa com use chamamos de hook
-    const{ user, signInWithGoogle }= useAuth()
-    const [roomCode, setRoomCode] = useState('')
+    const history = useHistory();//toda função que começa com use chamamos de hook
+    const{ user, signInWithGoogle, signOut }= useAuth();
+    const [roomCode, setRoomCode] = useState('');
 
-    async function handleCreateRoom(){
+    async function handleLogin(){
         if(!user){
           await signInWithGoogle()
         }
@@ -28,6 +29,7 @@ export function Home(){
     }
 
     async function handleJoinRoom(event: FormEvent) {
+        
         event.preventDefault()
         if(roomCode.trim() === ''){
             return
@@ -45,7 +47,10 @@ export function Home(){
             return
         }
 
-        history.push(`/rooms/${roomCode}`)
+        if(roomRef.val().authorId === user?.id)
+            history.push(`/admin/rooms/${roomCode}`);
+        else
+            history.push(`/rooms/${roomCode}`)
     }
     return(
         <div id ="page-auth">
@@ -57,11 +62,12 @@ export function Home(){
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="Letmeask" />
-                    <button onClick={handleCreateRoom} className="create-room">
+                    <span>Gerencie e participe de salas</span>
+                    <button onClick={handleLogin} className="create-room">
                         <img src={googleIconImg} alt="logo do google" />
-                        Crie sua sala com o Google
+                        Entre com uma conta do Google
                     </button>
-                    <div className="separator">Ou entre em uma sala</div>
+                    <div className="separator">Ou entre como convidado </div>
                     <form onSubmit={handleJoinRoom}>
                         <input 
                             type="text" 
@@ -74,6 +80,8 @@ export function Home(){
                         </Button>
                     </form>
                 </div>
+                {user && <UserInfoDropdown user={user} signOut={signOut}/>}
+
             </main>
         </div>
     )

@@ -1,16 +1,12 @@
 import { useHistory, useParams } from 'react-router-dom'
 
-import logoImg from '../../assets/images/logo.svg';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg'
-
-import { Button } from '../../components/Button';
-import { RoomCode } from '../../components/RoomCode';
+import { Header } from '../../components/Header';
 import { Question } from '../../components/Question';
-import { database } from '../../services/firebase';
+import { database, auth } from '../../services/firebase';
 import { useRoom } from '../../hooks/useRoom';
-
 import '../../styles/room.scss';
 
 
@@ -24,8 +20,9 @@ export function AdminRoom() {
     const params = useParams<RoomParams>()
     const roomId = params.id
 
-    const {questions, title} = useRoom(roomId)//carregamento dos dados da sala
+    const {questions, title, authorId} = useRoom(roomId)//carregamento dos dados da sala
 
+    console.log('author id', authorId)
     async function handleEndRoom(){
         database.ref(`rooms/${roomId}`).update({endedAt: new Date()})
         history.push('/')
@@ -48,18 +45,15 @@ export function AdminRoom() {
             isHighlighted:true
         })
     }
+
+    async function handleSignOut(){
+        await auth.signOut()
+        history.push('/')
+    }
+
     return (
         <div id="page-room">
-            <header>
-                <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
-                    <div>
-                    <RoomCode code={roomId} />
-                    <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
-                    </div>
-                </div>
-            </header>
-
+            <Header roomId={roomId} roomAuthorId={authorId} roomTitle={title}/>
             <main>
                 <div className="room-title">
                     <h1>Sala {title}</h1>

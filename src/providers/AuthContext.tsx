@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 import { createContext, ReactNode } from 'react'
 import { auth, firebase } from '../services/firebase'
+import { User } from '../types'
 
-type User = {
-    id: string;
-    name:string;
-    avatar:string;
-}
   
 type AuthContextType = {
-user:User | undefined;
-signInWithGoogle:  () => Promise<void>
+    user?:User | null;
+    signInWithGoogle:  () => Promise<void>;
+    signOut:  () => Promise<void>
+
 }
   
 type AuthContextProviderProps ={
@@ -20,7 +18,7 @@ type AuthContextProviderProps ={
 export const AuthContext = createContext({} as AuthContextType); //formato
 
 export function AuthContextProvider(props: AuthContextProviderProps){
-    const [ user, setUser] = useState<User>()
+    const [ user, setUser] = useState<User|null>()
 
     //useEffect é um hook para disparo de efeitos colaterais/funcionalidades
     //disparar uma função sempre que algo acontecer
@@ -67,8 +65,14 @@ export function AuthContextProvider(props: AuthContextProviderProps){
         }
     }
 
+    async function signOut(){
+        console.log('singing out')
+        await auth.signOut()
+        setUser(null)
+    }
+
     return(
-        <AuthContext.Provider value={{user, signInWithGoogle}}>
+        <AuthContext.Provider value={{user, signInWithGoogle, signOut}}>
             {props.children}
         </AuthContext.Provider>
 

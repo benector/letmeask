@@ -1,38 +1,15 @@
 import { useState, useEffect } from "react";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";
+import { QuestionType, FirebaseQuestions } from "../types";
 
-type FirebaseQuestions = Record<string, {
-    author: {
-        name: string,
-        avatar: string
-    },
-    content:string,
-    isAnswered: boolean,
-    isHighlighted: boolean,
-    likes: Record<string,{
-        authorId:string
-    }>
-}>
-
-type QuestionType = {
-    id:string,
-    author:{
-        name: string,
-        avatar: string
-    }
-    content: string,
-    isAnswered:boolean,
-    isHighlighted: boolean,
-    likeCount: number,
-    likeId : string | undefined
-}
 
 export function useRoom(roomId: string){
 
     const { user } = useAuth();
-    const [questions, setQuestions] = useState<QuestionType[]>([])
-    const [title, setTitle] = useState('')
+    const [questions, setQuestions] = useState<QuestionType[]>([]);
+    const [title, setTitle] = useState('');
+    const [authorId, setAuthorId] = useState('');
 
 
     //trazer as funcionalidades tanto para a visão publica quanto admin
@@ -43,6 +20,7 @@ export function useRoom(roomId: string){
         //on: toda vez que algo mudar na sala essa função será chamada e atualizará as informações
         roomRef.on('value',room =>{
             const databaseRoom = room.val()
+            console.log('databseRoom', databaseRoom)
             const firebaseQuestions = databaseRoom.questions as FirebaseQuestions ?? {}
                        
             //Object.entries :transforma json em array com arrays key value
@@ -59,6 +37,7 @@ export function useRoom(roomId: string){
             })
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions)
+            setAuthorId(databaseRoom.authorId)
         })
 
         return () => {
@@ -70,5 +49,5 @@ export function useRoom(roomId: string){
     //sem o segundo argumento (vazio) a função é executada apenas uma vez quando o componente
     //for exibido em tela
  
-    return { questions, title}
+    return { questions, title, authorId }
 }
