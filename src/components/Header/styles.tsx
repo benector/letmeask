@@ -1,12 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-
-export const HeaderContainer =  styled.div`
-    max-width: 1120px;
-    margin: 0 auto;
+export const HeaderContainer =  styled.header`
+    flex-grow: 0;
+    flex-basis: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 0.7em;
 
     > img {
       max-height: 45px;

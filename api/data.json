@@ -1,0 +1,108 @@
+{
+  "rooms" : {
+    "-MeVKuJL0Ii7GqyCHcoG" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "questions" : {
+        "-MgQx33GxDjjrU13wzCr" : {
+          "author" : {
+            "avatar" : "https://lh3.googleusercontent.com/a/AATXAJzsNHd8jD9GMoVxfPk2tlDL4KhlLejhYl9S-SOY=s96-c",
+            "name" : "Beatriz Benedicto"
+          },
+          "content" : "testando again",
+          "isAnswered" : false,
+          "isHighlighted" : false,
+          "likes" : {
+            "-MkI1d0i9WlS2wKPJuMa" : {
+              "authorId" : "VDv1wATA10Ohu9LtRdEtztCd0iT2"
+            }
+          }
+        },
+        "-Mi1nkX6F9wgHdKZ_3Oo" : {
+          "author" : {
+            "avatar" : "https://lh3.googleusercontent.com/a-/AOh14GiHHx1IvdVKVw-N3yljYCGrIgNF5S-r4pFCV5tZ=s96-c",
+            "name" : "Beatriz Benedicto"
+          },
+          "content" : "Testando",
+          "isAnswered" : false,
+          "isHighlighted" : false,
+          "likes" : {
+            "-MkI1dUpUjIJAQFjo6XK" : {
+              "authorId" : "VDv1wATA10Ohu9LtRdEtztCd0iT2"
+            }
+          }
+        },
+        "-MkI-mLWi8pwuBXE7HRs" : {
+          "author" : {
+            "name" : "Anônimo"
+          },
+          "content" : "Testando pergunta anonima",
+          "isAnswered" : false,
+          "isHighlighted" : false
+        },
+        "-MlGOMf2zqwRj2qoEFa2" : {
+          "author" : {
+            "name" : "Anônimo"
+          },
+          "content" : "pergunta anonima",
+          "isAnswered" : false,
+          "isHighlighted" : false
+        },
+        "-Mns3oTSARbkIbzNd2rn" : {
+          "author" : {
+            "avatar" : "https://lh3.googleusercontent.com/a-/AOh14GiHHx1IvdVKVw-N3yljYCGrIgNF5S-r4pFCV5tZ=s96-c",
+            "name" : "Beatriz Benedicto"
+          },
+          "content" : "is it still working?",
+          "isAnswered" : false,
+          "isHighlighted" : false
+        }
+      },
+      "title" : "teste"
+    },
+    "-MeVL1URRC1ZZq9EHDHM" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "endedAt" : "2021-08-04T18:23:06.044Z",
+      "title" : "teste"
+    },
+    "-Me_4XsszrPj4nef2zUX" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "questions" : {
+        "-Me_4_4CastbX4vGNb9X" : {
+          "author" : {
+            "avatar" : "https://lh3.googleusercontent.com/a/AATXAJzsNHd8jD9GMoVxfPk2tlDL4KhlLejhYl9S-SOY=s96-c",
+            "name" : "Beatriz Benedicto"
+          },
+          "content" : "pergunta 1",
+          "isAnswered" : false,
+          "isHighlighted" : false
+        },
+        "-Me_5BvJwG1KVLCSEYh9" : {
+          "author" : {
+            "avatar" : "https://lh3.googleusercontent.com/a/AATXAJzsNHd8jD9GMoVxfPk2tlDL4KhlLejhYl9S-SOY=s96-c",
+            "name" : "Beatriz Benedicto"
+          },
+          "content" : "pergunta 2",
+          "isAnswered" : false,
+          "isHighlighted" : false
+        }
+      },
+      "title" : "sala 2"
+    },
+    "-MgHMnpYfV152WAOf5Q5" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "title" : "teste"
+    },
+    "-MlFeF_vm5KU70pkGKt3" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "title" : "testando"
+    },
+    "-Mve7CqZdlE6OOajmAC0" : {
+      "authorId" : "VDv1wATA10Ohu9LtRdEtztCd0iT2",
+      "title" : "Bea"
+    },
+    "-MvsFnu8UIPhFRWSFUFE" : {
+      "authorId" : "ipyIGBwCdXNas8sV5Nj1YA0qmGD2",
+      "title" : "-Mve7CqZdlE6OOajmAC0"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 
 
-import { useHistory, Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { User } from '../../types';
-import { Menu, Dropdown } from 'antd';
+import { Dropdown } from 'antd';
 import { UserInfoContainer, MenuStyled } from './styles';
 import { AiFillCaretDown, AiOutlineLogout } from "react-icons/ai";
 
@@ -27,7 +27,12 @@ export function UserInfoDropdown(props: UserInfoDropdownProps){
         <MenuStyled>
           <MenuStyled.Item key="0">
             <div className="sign-out">
-                <a onClick={handleSignOut}>Sair</a>
+                <a href="#" onClick={handleSignOut}><AiOutlineLogout /> Sair</a>
+            </div>
+          </MenuStyled.Item>
+          <MenuStyled.Item key="1">
+            <div className="sign-out">
+                <a href="/admin/my-rooms">Minhas salas</a>
             </div>
           </MenuStyled.Item>
         </MenuStyled>
@@ -35,10 +40,10 @@ export function UserInfoDropdown(props: UserInfoDropdownProps){
 
     return(
       <UserInfoContainer>
-          <img src={props.user?.avatar} alt={`usuário logado: ${props.user?.name}`} />
-            <span>{props.user?.name}</span>
             <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter">
-                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                <a className="ant-dropdown-link" href="#" onClick={e => e.preventDefault()}>
+                    <img src={props.user?.avatar} alt={`usuário logado: ${props.user?.name}`} />
+                    <span>{props.user?.name}</span>
                     < AiFillCaretDown />
                 </a>
             </Dropdown>

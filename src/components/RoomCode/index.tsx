@@ -1,3 +1,5 @@
+import { Popover } from 'antd';
+
 import copyImg from '../../assets/images/copy.svg';
 
 import './styles.scss';
@@ -11,12 +13,19 @@ export function RoomCode(props: RoomCodeProps) {
     navigator.clipboard.writeText(props.code)
   }
 
+  const content = (
+    <div>
+      <span>Código copiado com sucesso</span>
+    </div>
+  )
   return (
-    <button className="room-code" onClick={copyRoomCodeToClipboard}>
-      <span>#{props.code}</span>
-      <div>
-        <img src={copyImg} alt="Copy room code" />
-      </div>
-    </button>
+    <Popover content={content} trigger="click">
+      <button className="room-code" onClick={copyRoomCodeToClipboard}>
+        <span>#{props.code}</span>
+        <div>
+          <img src={copyImg} alt="Copy room code" />
+        </div>
+      </button>
+    </Popover>
   )
 }
